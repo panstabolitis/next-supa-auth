@@ -3,7 +3,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Image from "next/image";
 
-export default function Protected() {
+export default function Home() {
     const { data: session, status } = useSession();
 
     if (status === "loading") {
