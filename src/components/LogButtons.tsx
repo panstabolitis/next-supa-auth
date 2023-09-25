@@ -1,14 +1,16 @@
+
 "use client";
-import { signIn, signOut } from "next-auth/react";
+
+import { signInWithGoogle, signOut } from "@/hooks/Log";
 
 export function SignOutBtn() {
     return( 
-        <button onClick={() => signOut()}>Sign Out</button>
+        <button onClick={() => {signOut()}}>Sign out from Google</button>
     )
 }
 
 export function SignInBtn() {
     return( 
-        <button onClick={() => signIn()}>Sign In</button>
+        <button onClick={() => {signInWithGoogle()}}>Sign in with Google</button>
     )
 }
