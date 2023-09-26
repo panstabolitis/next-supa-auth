@@ -7,7 +7,6 @@ export async function signInWithGoogle() {
         });
       
         if (error) throw error;
-        console.log('Signed in:', data);
       
     } catch (error) {
         console.error('Error signing in:', error);
@@ -17,11 +16,7 @@ export async function signInWithGoogle() {
 export async function signOut() {
     try {
         const { error } = await supabase.auth.signOut();
-      
-        if (error) throw error;
-      
-        console.log('Successfully signed out!');
-      
+        if (error) throw error;      
     } catch (error) {
         console.error('Error signing out:', error);
     }

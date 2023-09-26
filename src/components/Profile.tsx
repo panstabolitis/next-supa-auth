@@ -1,6 +1,8 @@
 "use client";
 import { supabase } from "@/lib/useClient";
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import { SignInBtn, SignOutBtn } from "./LogButtons";
+import { redirect } from 'next/navigation';
 
 export function Profile() {
     const [user, setUser] = useState<any>();
@@ -9,15 +11,21 @@ export function Profile() {
         async function getUserData() {
             await supabase.auth.getUser().then( (value) => {
                 if (value.data?.user) {
-                    console.log(value.data.user);
                     setUser(value.data.user);
                 }
             });
         }
         getUserData();
-    }, [])
+    }, []);
+
+    if (!user) {
+        <pre>Fetching...</pre>
+    }
 
     return(
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+        <div>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+            <SignOutBtn />
+        </div>
     )
 }
