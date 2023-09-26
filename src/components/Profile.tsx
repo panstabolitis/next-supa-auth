@@ -3,6 +3,7 @@ import { supabase } from "@/lib/useClient";
 import { useEffect, useState } from "react";
 import { SignInBtn, SignOutBtn } from "./LogButtons";
 import { redirect } from 'next/navigation';
+import { getSession } from "next-auth/react";
 
 export function Profile() {
     const [user, setUser] = useState<any>();
@@ -16,6 +17,12 @@ export function Profile() {
             });
         }
         getUserData();
+        async function getUserSession() {
+            await supabase.auth.getSession().then( (session) => {
+                console.log(session);
+            });
+        }
+        getUserSession();
     }, []);
 
     if (!user) {
