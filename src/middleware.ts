@@ -2,14 +2,11 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
  
 // This function can be marked `async` if using `await` inside
-export async function middleware(req: NextRequest) {
+export async function middleware(request: NextRequest) {
 
-  const res = NextResponse.next();
-  const supabase = createMiddlewareClient({ req, res })
-
-  await supabase.auth.getSession().then( (session) => {
-    console.log(session);
-  });
+  if (request.nextUrl.pathname !== "/") {
+    return NextResponse.redirect(new URL('/', request.url))
+  }
 
 }
 
@@ -22,6 +19,6 @@ export const config = {
        * - _next/image (image optimization files)
        * - favicon.ico (favicon file)
        */
-      '/((?!api|_next/static|_next/image|favicon.ico).*)', '/', '/authentication'
+      '/((?!api|_next/static|_next/image|favicon.ico).*)', '/'
     ],
 }
