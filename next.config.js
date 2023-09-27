@@ -8,8 +8,14 @@ const nextConfig = {
             protocol: "https",
             hostname: "*.googleusercontent.com",
             port: "",
-            pathname: "**",
+            pathname: "**"
           },
+          {
+            protocol: "https",
+            hostname: "*.wikimedia.org",
+            port: "",
+            pathname: "**"
+          }
         ],
     },
 };

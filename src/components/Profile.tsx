@@ -1,9 +1,7 @@
 "use client";
 import { supabase } from "@/lib/useClient";
 import { useEffect, useState } from "react";
-import { SignInBtn, SignOutBtn } from "./LogButtons";
-import { redirect } from 'next/navigation';
-import { getSession } from "next-auth/react";
+import Image from "next/image";
 
 export function Profile() {
     const [user, setUser] = useState<any>();
@@ -17,22 +15,47 @@ export function Profile() {
             });
         }
         getUserData();
-        async function getUserSession() {
-            await supabase.auth.getSession().then( (session) => {
-                console.log(session);
-            });
-        }
-        getUserSession();
     }, []);
 
+    async function signOut() {
+        try {
+            console.log("Signing out...");
+            await supabase.auth.signOut();
+            setUser(null);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async function signInWithGoogle() {
+        await supabase.auth.signInWithOAuth({
+            provider: 'google'
+        });
+    }
+
     if (!user) {
-        <pre>Fetching...</pre>
+        return(
+            <div className="page-wrapper">
+                <button onClick={() => {signInWithGoogle()}} className="btn logIn-btn ">
+                    Sign in with Google
+                    <Image src={"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"} alt="google" width={24} height={24}/>
+                    </button>
+            </div>
+        )
     }
 
     return(
-        <div>
-            <pre>{JSON.stringify(user, null, 2)}</pre>
-            <SignOutBtn />
+        <div className="page-wrapper">
+            <div className="box">
+                <div className="box-content">
+                    <Image src={user.user_metadata.avatar_url} alt="pfp image" height={100} width={100} style={{ borderRadius: "50%"}} />
+                    <div className="box-user-meta">
+                        <span>Hey 👋</span>
+                        <h1>{user.user_metadata.name}</h1>
+                    </div>
+                </div>
+                <button onClick={() => {signOut()}} className="btn">Sign Out</button>
+            </div>
         </div>
     )
 }

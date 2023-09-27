@@ -1,9 +1,9 @@
 :root {
-  --background: #030203;
-  --text: #F8F6F9;
-  --primary: #A2BA91;
-  --secondary: #121C13;
-  --accent: #959A60;
+  --background: #050505;
+  --text: #F2F2F2;
+  --primary: #404040;
+  --secondary: #121212;
+  --accent: #242424;
 }
 
 *::before, *::after, * {
@@ -15,4 +15,57 @@
 html, body {
   background-color: var(--background);
   color: var(--text);
+  overflow: hidden;
+}
+
+.page-wrapper {
+  height: 100svh;
+  max-height: 100svh;
+  width: 100vw;
+  max-width: 100vw;
+
+  overflow: auto;
+
+  display: grid;
+  place-items: center;
+}
+
+.box {
+  padding: 1rem;
+  background-color: var(--secondary);
+  width: fit-content;
+  border-radius: 1rem;
+  border: thin solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.box-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.box-user-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.btn {
+  gap: 0.5rem;
+  flex: 1;
+  padding: 8px 16px;
+  background-color: #fff;
+  color: #000;
+  cursor: pointer;
+  border: 0px solid #000000;
+  box-shadow: inset 2px 2px 6px #000, inset -2px -2px 6px #000;
+}
+
+.logIn-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
