@@ -37,8 +37,8 @@ export function Profile() {
         return(
             <div className="page-wrapper">
                 <button onClick={() => {signInWithGoogle()}} className="btn logIn-btn ">
-                    Sign in with Google
                     <Image src={"https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"} alt="google" width={24} height={24}/>
+                    Sign in with Google
                     </button>
             </div>
         )
