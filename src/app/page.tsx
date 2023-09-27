@@ -1,4 +1,3 @@
-import { SignInBtn, SignOutBtn } from "@/components/LogButtons";
 import { Profile } from "@/components/Profile";
 
 
